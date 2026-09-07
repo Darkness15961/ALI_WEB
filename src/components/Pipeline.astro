@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import secundaria from '../assets/images/secundaria.png';
+
+const steps = [
+	{ n: '01', t: 'Captura', d: 'Información visual bajo condiciones controladas.' },
+	{ n: '02', t: 'Detección facial', d: 'Puntos y características faciales.' },
+	{ n: '03', t: 'Microexpresiones', d: 'Análisis mediante FACS.' },
+	{ n: '04', t: 'Clasificación', d: 'Probabilidades de estados emocionales.' },
+	{ n: '05', t: 'Autorreportes', d: 'Lo que el estudiante dice sentir.' },
+	{ n: '06', t: 'Triangulación', d: 'Fuentes combinadas, información contextualizada.' },
+];
+---
+
+<section id="pipeline" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+		<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+			De la señal a una lectura compartida
+		</h2>
+		<p class="reveal reveal-d1 mx-auto mt-5 max-w-[44ch] text-[16px] leading-7 text-mist">
+			Seis pasos pensados para el trabajo diario del equipo educativo: de la captura a una
+			vista que docentes y psicólogos pueden usar juntos.
+		</p>
+	</div>
+
+	<div class="reveal mx-auto mt-12 max-w-6xl px-5 md:px-8">
+		<div class="frame relative aspect-[16/8] min-h-[220px]">
+			<Image
+				src={secundaria}
+				alt="Pasillo de un colegio secundario, con estudiantes caminando de espaldas."
+				class="absolute inset-0 h-full w-full object-cover"
+				widths={[960, 1440, 1920]}
+				sizes="100vw"
+			/>
+		</div>
+	</div>
+
+	<ol class="mx-auto mt-10 grid max-w-6xl gap-3 px-5 sm:grid-cols-2 lg:grid-cols-3 md:px-8">
+		{
+			steps.map((step) => (
+				<li class="reveal rounded-[1.5rem] border border-line bg-ink p-6">
+					<p class="text-[13px] text-mist">{step.n}</p>
+					<h3 class="mt-4 text-[20px] font-semibold tracking-tight">{step.t}</h3>
+					<p class="mt-2 text-[14px] leading-6 text-mist">{step.d}</p>
+				</li>
+			))
+		}
+	</ol>
+	<div class="reveal mx-auto mt-8 flex max-w-6xl flex-wrap items-center justify-center gap-2 px-5">
+		{['OpenCV', 'Dlib', 'MediaPipe', 'FER+', 'FACS'].map((item) => (
+			<span class="rounded-full border border-line px-3 py-1 text-[12px] text-mist">{item}</span>
+		))}
+	</div>
+</section>

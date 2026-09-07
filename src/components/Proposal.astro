@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import docentes from '../assets/images/docentes.png';
+---
+
+<section id="propuesta" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-6xl px-5 md:px-8">
+		<div class="max-w-3xl">
+			<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+				Trabajamos codo a codo con el equipo educativo
+			</h2>
+			<p class="reveal reveal-d1 mt-5 max-w-[48ch] text-[16px] leading-7 text-mist">
+				ALI ayuda a docentes y psicólogos a ver el bienestar socioemocional con más claridad:
+				señales, autorreportes y contexto, listos para el acompañamiento diario.
+			</p>
+			<a href="#dashboard" class="btn btn-ghost reveal reveal-d2 mt-8">Ver cómo colaboramos</a>
+		</div>
+
+		<div class="reveal mt-14 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+			<div class="frame relative min-h-[380px] aspect-[4/3] lg:aspect-auto lg:min-h-[520px]">
+				<Image
+					src={docentes}
+					alt="Una docente y un psicólogo escolar trabajando juntos frente a un computador."
+					class="absolute inset-0 h-full w-full object-cover"
+					widths={[800, 1200, 1600]}
+					sizes="(min-width: 1024px) 55vw, 100vw"
+				/>
+			</div>
+			<ol class="flex flex-col justify-center gap-0 rounded-[1.75rem] border border-line bg-ink p-6 md:p-8">
+				{
+					[
+						{ k: 'El aula', d: 'Partimos de cada grupo, en su propio contexto.' },
+						{ k: 'Tres lecturas', d: 'Reconocimiento, autorreporte y momento, trabajando juntos.' },
+						{ k: 'Una vista compartida', d: 'Patrones claros para el equipo que acompaña.' },
+						{ k: 'Acompañamiento', d: 'Docentes y psicólogos conducen el día a día.' },
+					].map((item, i) => (
+						<li class="border-b border-line py-5 last:border-b-0">
+							<p class="text-[12px] text-mist">{String(i + 1).padStart(2, '0')}</p>
+							<h3 class="mt-2 text-[20px] font-semibold tracking-tight">{item.k}</h3>
+							<p class="mt-1 text-[14px] leading-6 text-mist">{item.d}</p>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</div>
+</section>

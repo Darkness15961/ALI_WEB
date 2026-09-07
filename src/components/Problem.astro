@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import aula from '../assets/images/problema-aula.png';
+
+const groups = [
+	{
+		k: 'Diagnóstico',
+		note: 'Mismo indicador (trastorno mental). La prevalencia sube con la edad.',
+		items: [
+			{
+				n: '7%',
+				d: 'de niñas y niños de 5 a 9 años en el mundo vive con un trastorno mental.',
+				s: 'OMS',
+			},
+			{
+				n: '14%',
+				d: 'de adolescentes de 10 a 19 años en el mundo vive con un trastorno mental.',
+				s: 'OMS, 2022',
+			},
+			{
+				n: '16 M',
+				d: 'de adolescentes 10–19 en América Latina y el Caribe: un 15%, por encima del 13–14% mundial.',
+				s: 'UNICEF',
+			},
+		],
+	},
+	{
+		k: 'Riesgo y aula',
+		note: 'No es lo mismo un diagnóstico que estar en riesgo o reportar estrés escolar. Por eso las cifras son más altas.',
+		items: [
+			{
+				n: '30%',
+				d: 'de NNA en el Perú está en riesgo de problemas emocionales, de conducta o de atención: unos 3,2 millones.',
+				s: 'MINSA y UNICEF',
+			},
+			{
+				n: '4/10',
+				d: 'estudiantes de secundaria manifiestan estrés, ansiedad o falta de motivación hacia el aprendizaje.',
+				s: 'Minedu · Bienestar Socioemocional Escolar 2024',
+			},
+		],
+	},
+	{
+		k: 'Curso de vida',
+		note: 'La mayor parte de lo que se ve en la adultez ya empezó en la escuela.',
+		items: [
+			{
+				n: '1/3',
+				d: 'de los trastornos mentales de la vida adulta ya está presente a los 14 años.',
+				s: 'OMS',
+			},
+			{
+				n: '50%',
+				d: 'aparece hacia los 18 años. Casi dos tercios, hacia los 25.',
+				s: 'OMS',
+			},
+			{
+				n: '+25%',
+				d: 'subieron la depresión y la ansiedad en el primer año de la pandemia.',
+				s: 'OMS, 2022',
+			},
+		],
+	},
+];
+---
+
+<section id="problema" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+		<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+			Las emociones también impulsan el aprendizaje
+		</h2>
+		<p class="reveal reveal-d1 mx-auto mt-5 max-w-[50ch] text-[16px] leading-7 text-mist">
+			Las cifras no se contradicen: miden cosas distintas. El diagnóstico es más estricto que el
+			riesgo, y el malestar escolar es más visible en secundaria.
+		</p>
+	</div>
+
+	<div class="reveal mx-auto mt-12 max-w-6xl px-5 md:px-8">
+		<div class="frame relative aspect-[16/8] min-h-[240px]">
+			<Image
+				src={aula}
+				alt="Aula secundaria en silencio, con pupitres vacíos en primer plano."
+				class="absolute inset-0 h-full w-full object-cover"
+				widths={[960, 1440, 1920]}
+				sizes="100vw"
+			/>
+		</div>
+	</div>
+
+	<div class="mx-auto mt-20 max-w-6xl space-y-16 px-5 md:px-8">
+		{
+			groups.map((group) => (
+				<div class="reveal">
+					<p class="text-[13px] font-medium tracking-tight text-paper">{group.k}</p>
+					<p class="mt-2 max-w-[52ch] text-[14px] leading-6 text-mist">{group.note}</p>
+					<div
+						class:list={[
+							'mt-8 grid gap-x-10 gap-y-12',
+							group.items.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3',
+						]}
+					>
+						{group.items.map((item) => (
+							<div>
+								<p class="text-[52px] leading-none font-semibold tracking-[-0.05em] sm:text-[64px]">
+									{item.n}
+								</p>
+								<p class="mt-4 text-[15px] leading-6 text-mist">{item.d}</p>
+								<p class="mt-2 text-[12px] text-mist/80">{item.s}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			))
+		}
+	</div>
+</section>

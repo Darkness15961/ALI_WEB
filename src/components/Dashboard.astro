@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import docentes from '../assets/images/docentes.png';
+
+const emotions = [
+	{ name: 'Tristeza', pct: 51.1 },
+	{ name: 'Malestar', pct: 23.1 },
+	{ name: 'Alegría', pct: 17.3 },
+	{ name: 'Disgusto', pct: 3.5 },
+	{ name: 'Sorpresa', pct: 3.5 },
+	{ name: 'Miedo', pct: 1.5 },
+];
+---
+
+<section id="dashboard" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-6xl px-5 md:px-8">
+		<div class="max-w-3xl">
+			<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+				Una vista compartida para el equipo del aula
+			</h2>
+			<p class="reveal reveal-d1 mt-5 max-w-[48ch] text-[16px] leading-7 text-mist">
+				Reportes individuales y grupales, más alertas cuando aparecen emociones negativas de forma
+				recurrente. Así tutores y psicólogos acompañan con más oportunidad.
+			</p>
+			<a href="#etica" class="btn btn-ghost reveal reveal-d2 mt-8">Cómo cuidamos a cada estudiante</a>
+		</div>
+
+		<div class="reveal mt-14 grid gap-4 lg:grid-cols-2">
+			<div class="frame relative min-h-[360px] aspect-[4/3] lg:aspect-auto lg:min-h-[540px]">
+				<Image
+					src={docentes}
+					alt="Docente y psicólogo revisando información del aula en un entorno escolar."
+					class="absolute inset-0 h-full w-full object-cover"
+					widths={[800, 1200, 1600]}
+					sizes="(min-width: 1024px) 50vw, 100vw"
+				/>
+			</div>
+			<div class="rounded-[1.75rem] border border-line bg-ink p-6 md:p-8">
+				<div class="flex items-center justify-between">
+					<span class="text-[14px] font-semibold tracking-tight">ALI</span>
+					<span class="text-[12px] text-mist">Reconocimiento automatizado</span>
+				</div>
+				<p class="mt-8 text-[12px] text-mist">Distribución emocional · todas las sesiones</p>
+				<ul class="mt-5 grid grid-cols-2 gap-5">
+					{
+						emotions.map((e) => (
+							<li>
+								<p class="text-[13px] text-mist">{e.name}</p>
+								<p class="mt-1 text-[28px] font-semibold tracking-tight">{e.pct}%</p>
+								<div class="mt-3 h-1 rounded-full bg-white/10">
+									<div class="h-1 rounded-full bg-paper" style={`width: ${e.pct}%`} />
+								</div>
+							</li>
+						))
+					}
+				</ul>
+				<p class="mt-8 border-t border-line pt-5 text-[13px] text-mist">
+					Fuente: reconocimiento ALI con FACS, publicado en Springer LNNS 1966.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

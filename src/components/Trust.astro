@@ -1,0 +1,27 @@
+---
+const items = [
+	'Springer Nature',
+	'ICITS 2026',
+	'Universidad Continental',
+	'Cusco',
+	'FACS',
+	'OpenCV',
+	'MediaPipe',
+	'FER+',
+	'LNNS 1966',
+	'Fabrication Laboratory',
+];
+---
+
+<section class="border-y border-line py-8" aria-label="Respaldo científico">
+	<p class="mb-5 text-center text-[13px] text-mist">Hecho para colegios, universidades y equipos de bienestar</p>
+	<div class="marquee">
+		<div class="marquee-track">
+			{
+				[...items, ...items].map((item) => (
+					<span class="px-8 text-[15px] font-medium tracking-tight text-fog/80 whitespace-nowrap">{item}</span>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import investigacion from '../assets/images/investigacion.png';
+
+const authors = [
+	{ name: 'Eduardo Ñaupa Yapura', corresponding: true },
+	{ name: 'Antony Elio Ayansi Huisa', corresponding: false },
+	{ name: 'Anthony Dennis Oyola Saloma', corresponding: false },
+	{ name: 'Daniel Hachircana Méndez', corresponding: false },
+	{ name: 'Yadira Melina Zapata Ttito', corresponding: false },
+	{ name: 'Diana Salas Sanchez', corresponding: false },
+];
+
+const doi = 'https://doi.org/10.1007/978-3-032-27538-7_66';
+const chapter = 'https://link.springer.com/chapter/10.1007/978-3-032-27538-7_66';
+---
+
+<section id="investigacion" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+		<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+			Una investigación hecha para el aula
+		</h2>
+		<p class="reveal reveal-d1 mx-auto mt-5 max-w-[50ch] text-[16px] leading-7 text-mist">
+			Capítulo publicado en Springer Nature: ICITS 2026, Lecture Notes in Networks and Systems,
+			volumen 1966. Universidad Continental, Cusco.
+		</p>
+	</div>
+
+	<div class="reveal mx-auto mt-14 grid max-w-6xl gap-4 px-5 lg:grid-cols-2 md:px-8">
+		<div class="frame relative min-h-[320px] aspect-[4/3] lg:aspect-auto lg:min-h-[560px]">
+			<Image
+				src={investigacion}
+				alt="Archivo académico con investigadores revisando publicaciones científicas."
+				class="absolute inset-0 h-full w-full object-cover"
+				widths={[800, 1200, 1600]}
+				sizes="(min-width: 1024px) 50vw, 100vw"
+			/>
+		</div>
+		<article class="flex flex-col justify-center rounded-[1.75rem] border border-line bg-ink p-6 md:p-10">
+			<p class="text-[13px] text-mist">ICITS 2026 · LNNS 1966 · pp. 1–10 · Capítulo 66</p>
+			<h3 class="mt-4 text-[22px] leading-snug font-semibold tracking-tight md:text-[26px]">
+				Integrating Artificial Intelligence and Self-reports for Emotional Recognition and Management
+				in Primary and Secondary Education
+			</h3>
+			<p class="mt-4 text-[13px] leading-6 text-mist">
+				Fabrication Laboratory · Universidad Continental · Cusco, Perú
+			</p>
+			<ul class="mt-8 grid gap-2 sm:grid-cols-2">
+				{
+					authors.map((author) => (
+						<li class="border-t border-line pt-2 text-[13px] text-fog">
+							{author.name}
+							{author.corresponding && <span class="ml-1 text-mist"> · autor de correspondencia</span>}
+						</li>
+					))
+				}
+			</ul>
+			<div class="mt-6 flex flex-wrap gap-2">
+				{
+					['Emotional Recognition', 'AI in Education', 'Self-Report Analysis', 'Socioemotional Learning'].map(
+						(tag) => (
+							<span class="rounded-full border border-line px-3 py-1 text-[11px] text-mist">{tag}</span>
+						),
+					)
+				}
+			</div>
+			<div class="mt-8 flex flex-wrap gap-3">
+				<a href={chapter} target="_blank" rel="noopener noreferrer" class="btn btn-fill">
+					Leer en Springer
+				</a>
+				<a href={doi} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+					DOI
+				</a>
+			</div>
+		</article>
+	</div>
+</section>

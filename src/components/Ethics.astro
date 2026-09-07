@@ -1,0 +1,38 @@
+---
+const pillars = [
+	{
+		t: 'Cuidado de los datos',
+		d: 'No guardamos videos. Solo puntos faciales anonimizados y reportes emocionales.',
+	},
+	{
+		t: 'Anonimización',
+		d: 'Trabajamos con puntos faciales anonimizados, pensados para proteger identidades.',
+	},
+	{
+		t: 'Junto al equipo',
+		d: 'ALI acompaña el trabajo de docentes y psicólogos. El vínculo con el estudiante es de ellos.',
+	},
+];
+---
+
+<section id="etica" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+		<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+			Cuidado, de origen
+		</h2>
+		<p class="reveal reveal-d1 mx-auto mt-5 max-w-[46ch] text-[16px] leading-7 text-mist">
+			Consentimiento de estudiantes, familias y docentes. Participación voluntaria y derecho a
+			retirarse. Diseñado para colaborar con la institución, con respeto por cada estudiante.
+		</p>
+	</div>
+	<div class="mx-auto mt-16 grid max-w-6xl gap-3 px-5 md:grid-cols-3 md:px-8">
+		{
+			pillars.map((item) => (
+				<article class="reveal rounded-[1.5rem] border border-line bg-ink p-7 md:p-8">
+					<h3 class="text-[22px] font-semibold tracking-tight">{item.t}</h3>
+					<p class="mt-4 text-[15px] leading-7 text-mist">{item.d}</p>
+				</article>
+			))
+		}
+	</div>
+</section>

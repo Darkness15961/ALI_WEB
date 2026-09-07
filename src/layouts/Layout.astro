@@ -1,0 +1,96 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'ALI — Inteligencia socioemocional para el aula',
+	description = 'ALI ayuda a colegios y universidades a comprender el bienestar socioemocional del aula. Investigación del Fabrication Laboratory, Universidad Continental, publicada en Springer Nature (ICITS 2026).',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="min-h-dvh bg-void text-paper antialiased">
+		<a
+			href="#contenido"
+			class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-paper focus:px-3 focus:py-2 focus:text-void"
+		>
+			Saltar al contenido
+		</a>
+		<slot />
+		<script>
+			const reveals = document.querySelectorAll('.reveal');
+			const io = new IntersectionObserver(
+				(entries) => {
+					for (const entry of entries) {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('is-in');
+							io.unobserve(entry.target);
+						}
+					}
+				},
+				{ threshold: 0.16, rootMargin: '0px 0px -6% 0px' },
+			);
+			reveals.forEach((el) => io.observe(el));
+
+			const nav = document.querySelector('[data-nav]');
+			const progress = document.querySelector<HTMLElement>('[data-nav-progress]');
+			const onScroll = () => {
+				const y = window.scrollY;
+				nav?.classList.toggle('is-scrolled', y > 16);
+				if (progress) {
+					const max = document.documentElement.scrollHeight - window.innerHeight;
+					progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+				}
+			};
+			onScroll();
+			window.addEventListener('scroll', onScroll, { passive: true });
+
+			document.querySelectorAll('[data-count]').forEach((el) => {
+				const target = Number(el.getAttribute('data-count'));
+				const suffix = el.getAttribute('data-suffix') ?? '';
+				const prefix = el.getAttribute('data-prefix') ?? '';
+				const decimals = Number(el.getAttribute('data-decimals') ?? 0);
+				const counterIo = new IntersectionObserver(
+					([entry]) => {
+						if (!entry?.isIntersecting) return;
+						const start = performance.now();
+						const duration = 1400;
+						const tick = (now: number) => {
+							const t = Math.min(1, (now - start) / duration);
+							const eased = 1 - Math.pow(1 - t, 3);
+							const value = target * eased;
+							el.textContent =
+								prefix +
+								(decimals ? value.toFixed(decimals) : Math.round(value).toString()) +
+								suffix;
+							if (t < 1) requestAnimationFrame(tick);
+						};
+						requestAnimationFrame(tick);
+						counterIo.disconnect();
+					},
+					{ threshold: 0.5 },
+				);
+				counterIo.observe(el);
+			});
+		</script>
+	</body>
+</html>

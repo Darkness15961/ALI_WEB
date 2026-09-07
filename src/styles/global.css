@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+	--font-sans: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
+	--font-display: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+	--color-void: #050505;
+	--color-deep: #0c0c0c;
+	--color-ink: #111111;
+	--color-paper: #f5f5f4;
+	--color-fog: #d4d4d4;
+	--color-mist: #a1a1a1;
+	--color-line: rgb(255 255 255 / 10%);
+	--color-line-strong: rgb(255 255 255 / 16%);
+	--color-electric: #e8e8e8;
+	--color-violet: #c4c4c4;
+	--color-cyan: #d6d6d6;
+
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+	scroll-behavior: smooth;
+	background: var(--color-void);
+	color: var(--color-paper);
+}
+
+body {
+	font-family: var(--font-sans);
+	font-weight: 400;
+	letter-spacing: -0.01em;
+	background: var(--color-void);
+	overflow-x: hidden;
+}
+
+img.absolute {
+	max-width: none;
+}
+
+::selection {
+	background: #fff;
+	color: #000;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	padding: 0.7rem 1.2rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	letter-spacing: -0.01em;
+	transition: opacity 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-fill {
+	background: #fff;
+	color: #0a0a0a;
+}
+
+.btn-fill:hover {
+	opacity: 0.9;
+}
+
+.btn-ghost {
+	border: 1px solid rgb(255 255 255 / 18%);
+	color: #fff;
+	background: transparent;
+}
+
+.btn-ghost:hover {
+	background: rgb(255 255 255 / 6%);
+}
+
+.frame {
+	overflow: hidden;
+	border: 1px solid var(--color-line);
+	border-radius: 1.75rem;
+	background: var(--color-ink);
+}
+
+.reveal {
+	opacity: 0;
+	transform: translateY(20px);
+	transition:
+		opacity 0.8s var(--ease-out-expo),
+		transform 0.8s var(--ease-out-expo);
+}
+
+.reveal.is-in {
+	opacity: 1;
+	transform: none;
+}
+
+.reveal-d1 { transition-delay: 80ms; }
+.reveal-d2 { transition-delay: 160ms; }
+.reveal-d3 { transition-delay: 240ms; }
+.reveal-d4 { transition-delay: 320ms; }
+
+.marquee {
+	overflow: hidden;
+	mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+	display: flex;
+	width: max-content;
+	animation: marquee 42s linear infinite;
+}
+
+@keyframes marquee {
+	from { transform: translateX(0); }
+	to { transform: translateX(-50%); }
+}
+
+.nav-progress {
+	transform-origin: left center;
+	transform: scaleX(0);
+}
+
+@media (scripting: none) {
+	.reveal {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	.reveal,
+	.marquee-track {
+		animation: none !important;
+		transition: none !important;
+		opacity: 1 !important;
+		transform: none !important;
+	}
+}

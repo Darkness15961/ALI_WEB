@@ -1,0 +1,28 @@
+<header
+	data-nav
+	class="fixed inset-x-0 top-0 z-40 transition-[background,border-color,backdrop-filter] duration-300 [&:is(.is-scrolled)]:border-b [&:is(.is-scrolled)]:border-line [&:is(.is-scrolled)]:bg-void/80 [&:is(.is-scrolled)]:backdrop-blur-xl"
+>
+	<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-[4.25rem] md:px-8">
+		<a href="#hero" class="text-[15px] font-semibold tracking-tight text-paper">ALI</a>
+		<nav class="hidden items-center gap-8 md:flex" aria-label="Secciones">
+			{
+				[
+					{ href: '#instituciones', label: 'Plataforma' },
+					{ href: '#pipeline', label: 'Sistema' },
+					{ href: '#investigacion', label: 'Investigación' },
+					{ href: '#etica', label: 'Ética' },
+				].map((link) => (
+					<a href={link.href} class="text-[14px] text-mist transition-colors hover:text-paper">
+						{link.label}
+					</a>
+				))
+			}
+		</nav>
+		<div class="flex items-center gap-2">
+			<a href="#investigacion" class="btn btn-ghost hidden !px-4 !py-1.5 text-[13px] md:inline-flex">
+				Colaborar
+			</a>
+			<a href="#propuesta" class="btn btn-fill !px-4 !py-1.5 text-[13px]">Conocer ALI</a>
+		</div>
+	</div>
+</header>

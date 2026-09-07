@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import universidad from '../assets/images/universidad.png';
+import secundaria from '../assets/images/secundaria.png';
+import aula from '../assets/images/problema-aula.png';
+import docentes from '../assets/images/docentes.png';
+
+const lenses = [
+	{
+		img: universidad,
+		k: 'IA',
+		q: '¿Qué detecta el sistema?',
+		d: 'Lo que el sistema percibe: Action Units y una lectura de señales faciales, lista para el equipo.',
+		alt: 'Anfiteatro universitario.',
+	},
+	{
+		img: secundaria,
+		k: 'Estudiante',
+		q: '¿Qué dice sentir?',
+		d: 'Lo que el estudiante comparte: una voz que enriquece la lectura del aula.',
+		alt: 'Estudiantes de secundaria en un pasillo, vistos de espaldas.',
+	},
+	{
+		img: aula,
+		k: 'Contexto',
+		q: '¿En qué momento ocurre?',
+		d: 'Aula, curso y momento: el contexto que da sentido a cada señal.',
+		alt: 'Aula en calma.',
+	},
+	{
+		img: docentes,
+		k: 'ALI',
+		q: '¿Qué patrón podemos observar?',
+		d: 'Unimos lo que detecta el sistema con lo que el estudiante comparte, para una lectura más completa.',
+		alt: 'Profesionales de la educación interpretando información juntos.',
+	},
+];
+---
+
+<section id="corazon" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+		<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+			Una lectura más completa, hecha en equipo
+		</h2>
+		<p class="reveal reveal-d1 mx-auto mt-5 max-w-[46ch] text-[16px] leading-7 text-mist">
+			Colaboramos cruzando lo que ve el sistema con lo que el estudiante dice sentir. Así el equipo
+			educativo trabaja con una visión más rica del aula.
+		</p>
+	</div>
+	<div class="mx-auto mt-14 grid max-w-6xl gap-4 px-5 md:grid-cols-2 md:px-8">
+		{
+			lenses.map((item) => (
+				<article class="reveal frame">
+					<div class="relative aspect-[16/9]">
+						<Image
+							src={item.img}
+							alt={item.alt}
+							class="absolute inset-0 h-full w-full object-cover"
+							widths={[800, 1200]}
+							sizes="(min-width: 768px) 50vw, 100vw"
+						/>
+					</div>
+					<div class="p-6 md:p-7">
+						<p class="text-[13px] text-mist">{item.k}</p>
+						<h3 class="mt-2 text-[24px] font-semibold tracking-tight">{item.q}</h3>
+						<p class="mt-3 text-[14px] leading-6 text-mist">{item.d}</p>
+					</div>
+				</article>
+			))
+		}
+	</div>
+</section>

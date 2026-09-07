@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import universidad from '../assets/images/universidad.png';
+
+const stats = [
+	{ value: 75, prefix: '>', suffix: '%', label: 'Precisión en Action Units (FACS)' },
+	{ value: 68, prefix: '', suffix: '%', label: 'Coincidencia con autorreportes' },
+	{ value: 90, prefix: '', suffix: '', label: 'Estudiantes en la fase efectiva' },
+	{ value: 300, prefix: '~', suffix: '', label: 'Estudiantes en la calibración inicial' },
+];
+---
+
+<section id="resultados" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+		<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+			Validado en aulas reales
+		</h2>
+		<p class="reveal reveal-d1 mx-auto mt-5 max-w-[48ch] text-[16px] leading-7 text-mist">
+			Dos colegios privados del sur del Perú. Primaria y secundaria, de 11 a 15 años, durante tres
+			días consecutivos. Evidencia para trabajar con confianza.
+		</p>
+	</div>
+
+	<div class="reveal mx-auto mt-12 max-w-6xl px-5 md:px-8">
+		<div class="frame relative aspect-[16/8] min-h-[220px]">
+			<Image
+				src={universidad}
+				alt="Anfiteatro universitario, contexto educativo real de la evaluación."
+				class="absolute inset-0 h-full w-full object-cover"
+				widths={[960, 1440, 1920]}
+				sizes="100vw"
+			/>
+		</div>
+	</div>
+
+	<dl class="mx-auto mt-14 grid max-w-6xl gap-8 px-5 sm:grid-cols-2 lg:grid-cols-4 md:px-8">
+		{
+			stats.map((stat) => (
+				<div class="reveal border-t border-line pt-6">
+					<dt class="sr-only">{stat.label}</dt>
+					<dd
+						class="text-[48px] leading-none font-semibold tracking-[-0.04em] md:text-[56px]"
+						data-count={stat.value}
+						data-prefix={stat.prefix}
+						data-suffix={stat.suffix}
+					>
+						{stat.prefix}0{stat.suffix}
+					</dd>
+					<p class="mt-3 max-w-[18ch] text-[14px] leading-5 text-mist">{stat.label}</p>
+				</div>
+			))
+		}
+	</dl>
+	<p class="reveal mx-auto mt-12 max-w-6xl px-5 text-[14px] leading-7 text-mist md:px-8">
+		Muestra efectiva: 30 estudiantes de 6.° de primaria y 60 de 2.° de secundaria (grupos A y B).
+		Intensidad emocional en primaria: M = 5.17 (DE = 2.74) en escala 1–9. Calibración previa con
+		cerca de 300 estudiantes de secundaria en ciencias sociales.
+	</p>
+</section>

@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import primaria from '../assets/images/primaria.png';
+import secundaria from '../assets/images/secundaria.png';
+import aula from '../assets/images/problema-aula.png';
+
+const groups = [
+	{
+		img: primaria,
+		k: '6.° Primaria',
+		t: 'Perfil equilibrado',
+		d: 'Sorpresa, enojo y tristeza al 20%. Alegría 16.7%. Intensidad media-alta: M = 5.17.',
+		alt: 'Aula de primaria, con una docente acompañando a estudiantes vistos de espaldas.',
+		bars: [
+			{ label: 'Sorpresa / Enojo / Tristeza', pct: 20 },
+			{ label: 'Alegría', pct: 17 },
+		],
+	},
+	{
+		img: secundaria,
+		k: '2.° Secundaria A',
+		t: 'Más volatilidad',
+		d: 'Miércoles con tristeza (26.7%), jueves con alegría (36.7%) y viernes con miedo, enojo y disgusto.',
+		alt: 'Pasillo de secundaria, con estudiantes alejándose de la cámara.',
+		bars: [
+			{ label: 'Alegría · jueves', pct: 37 },
+			{ label: 'Tristeza · miércoles', pct: 27 },
+		],
+	},
+	{
+		img: aula,
+		k: '2.° Secundaria B',
+		t: 'Predominio negativo',
+		d: 'Tristeza, disgusto y miedo más persistentes. La intensidad sube de 4.80 el miércoles a 5.37 el viernes.',
+		alt: 'Aula secundaria en silencio, con pupitres en primer plano.',
+		bars: [
+			{ label: 'Disgusto · jueves', pct: 33 },
+			{ label: 'Tristeza · miércoles', pct: 30 },
+		],
+	},
+];
+---
+
+<section id="patrones" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+		<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+			Cada grupo, una forma distinta de acompañar
+		</h2>
+		<p class="reveal reveal-d1 mx-auto mt-5 max-w-[50ch] text-[16px] leading-7 text-mist">
+			Tres aulas, tres lecturas. ALI ayuda a ver cómo cambia el bienestar entre primaria y
+			secundaria, y a lo largo de la semana.
+		</p>
+	</div>
+
+	<div class="mx-auto mt-14 grid max-w-6xl gap-4 px-5 lg:grid-cols-3 md:px-8">
+		{
+			groups.map((group) => (
+				<article class="reveal frame">
+					<div class="relative aspect-[4/3]">
+						<Image
+							src={group.img}
+							alt={group.alt}
+							class="absolute inset-0 h-full w-full object-cover"
+							widths={[640, 960]}
+							sizes="(min-width: 1024px) 33vw, 100vw"
+						/>
+					</div>
+					<div class="p-6">
+						<p class="text-[13px] text-mist">{group.k}</p>
+						<h3 class="mt-2 text-[22px] font-semibold tracking-tight">{group.t}</h3>
+						<p class="mt-3 text-[14px] leading-6 text-mist">{group.d}</p>
+						<div class="mt-5 space-y-3">
+							{group.bars.map((bar) => (
+								<div>
+									<div class="mb-1 flex justify-between text-[11px] text-mist">
+										<span>{bar.label}</span>
+										<span>{bar.pct}%</span>
+									</div>
+									<div class="h-1 rounded-full bg-white/10">
+										<div class="h-1 rounded-full bg-paper" style={`width: ${bar.pct}%`} />
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</article>
+			))
+		}
+	</div>
+</section>

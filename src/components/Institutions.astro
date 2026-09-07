@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import primaria from '../assets/images/primaria.png';
+import universidad from '../assets/images/universidad.png';
+---
+
+<section id="instituciones" class="bg-void py-24 md:py-32">
+	<div class="mx-auto max-w-4xl px-5 text-center md:px-8">
+		<h2 class="reveal text-[36px] leading-[1.05] font-semibold tracking-[-0.03em] sm:text-[52px]">
+			Colaboramos con quien educa cada día
+		</h2>
+		<p class="reveal reveal-d1 mx-auto mt-5 max-w-[46ch] text-[16px] leading-7 text-mist">
+			Ayudamos a colegios, universidades y equipos de bienestar a comprender lo que ocurre en el
+			aula. Investigación del Fabrication Laboratory, Universidad Continental, Cusco.
+		</p>
+	</div>
+
+	<div class="mx-auto mt-14 grid max-w-6xl gap-4 px-5 md:grid-cols-2 md:px-8">
+		<article class="reveal frame group">
+			<div class="relative aspect-[16/10] overflow-hidden">
+				<Image
+					src={primaria}
+					alt="Aula de primaria con estudiantes vistos de espaldas y una docente junto a un pupitre."
+					class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+					widths={[800, 1200]}
+					sizes="(min-width: 768px) 50vw, 100vw"
+				/>
+			</div>
+			<div class="p-6 md:p-8">
+				<p class="text-[13px] text-mist">Colegios</p>
+				<h3 class="mt-2 text-[26px] font-semibold tracking-tight">Junto al aula</h3>
+				<p class="mt-3 max-w-[42ch] text-[15px] leading-6 text-mist">
+					Ayudamos a tutores, psicólogos y dirección a leer el pulso emocional del grupo y
+					acompañar a tiempo.
+				</p>
+			</div>
+		</article>
+
+		<article class="reveal reveal-d1 frame group">
+			<div class="relative aspect-[16/10] overflow-hidden">
+				<Image
+					src={universidad}
+					alt="Anfiteatro universitario lleno, fotografiado desde atrás."
+					class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+					widths={[800, 1200]}
+					sizes="(min-width: 768px) 50vw, 100vw"
+				/>
+			</div>
+			<div class="p-6 md:p-8">
+				<p class="text-[13px] text-mist">Universidades</p>
+				<h3 class="mt-2 text-[26px] font-semibold tracking-tight">Junto a la universidad</h3>
+				<p class="mt-3 max-w-[42ch] text-[15px] leading-6 text-mist">
+					Trabajamos con facultades y bienestar estudiantil: investigación aplicada que se
+					queda cerca del aula.
+				</p>
+			</div>
+		</article>
+	</div>
+</section>
